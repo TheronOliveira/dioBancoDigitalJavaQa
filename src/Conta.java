@@ -27,7 +27,12 @@ public abstract class Conta {
 		this.saldo += valor;
 	}
 
-	public void transferir(Conta destino, double valor) {
-		
+	public void transferir(Conta origem, Conta destino, double valor) {
+		if (origem.getSaldo() >= valor) {
+			this.saldo -= valor;
+			destino.depositar(valor);
+		} else {
+			System.out.println("Saldo insuficiente: " + origem.getSaldo());
+		}
 	}
 }
